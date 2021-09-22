@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>New Item</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <h1>Add a new Item</h1>
+    <form method="POST" action="/inventory">
+        <!-- <label for="inventory">Select an Item:</label>
+        <select name="inventory" id="inventory">
+            <% for (let i = 0; i < allInventory.length; i++) { %>
+                <option value="<%= allInventory[i]._id %>"><%= allInventory[i].itemName %></option>
+            <% } %>
+        </select> -->
+        <br>
+
+        <label for="owner">Name of Owner:</label>
+        <input type="text" name="itemOwner">
+        <br>
+        <label for="name">Name of Item:</label>
+        <input type="text" name="itemName">
+        <br>
+        <label for="quantity">Amount of Items:</label>
+        <input type="number" name="itemQuantity">
+        <br>
+        <label for="info">Info on Item:</label>
+        <input type="text" name="itemInfo">
+        <br>
+        <label for="location">Location of Items:</label>
+        <input type="text" name="itemLocation">
+        <br>
+        <label for="destination">Destination of Items:</label>
+        <input type="text" name="itemDestination">
+        <br>
+        <label for="content">Item Info/Instructions:</label>
+        <input type="text" name="content">
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Item Show</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    
+    <h1>Item Show Page</h1>
+    <h2><%= inventory.itemName %></h2>
+    <h2><%= inventory.itemOwner %></h2>
+
+    <!-- Convert this to a link that will take us to the location page -->
+    <a href="/inventory/<%= inventory.itemLocation._id %>">
+        <p><%= inventory.itemLocation %></p>
+        <p><%= inventory.itemDestination %></p>
+    </a>
+
+    <p><%= inventory.itemQuantity %></p>
+    <p><%= inventory.itemInfo %></p>
+
+    <a href="/inventory/<%= inventory._id %>/edit">Edit this Item</a>
+
+    <form action="/inventory/<%= inventory._id %>?_method=DELETE" method="post">
+        <input type="submit" value="Delete inventory"/>
+    </form>
+</body>
+</html>

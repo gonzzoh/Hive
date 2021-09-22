@@ -1,0 +1,28 @@
+{
+  "name": "nest",
+  "version": "1.0.0",
+  "description": "This is my third and final project as a student under General Assembly.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonzzoh/Nest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gonzzoh/Nest/issues"
+  },
+  "homepage": "https://github.com/gonzzoh/Nest#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.7",
+    "rowdy-logger": "^1.0.2"
+  }
+}
