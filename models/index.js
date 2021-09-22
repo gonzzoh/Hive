@@ -19,5 +19,5 @@ mongoose.connection.on("error", (err) => {
 
 module.exports = {
   Inventory: require('./Inventory.js'),
-  Locations: require('./Locations.js')
+  Locations: require('./Location.js')
 }

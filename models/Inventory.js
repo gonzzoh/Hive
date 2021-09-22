@@ -4,9 +4,13 @@ const inventorySchema = new mongoose.Schema({
     itemOwner: { type: String, required: true },
     itemName: {type: String, required: true }, 
     itemInfo: {type: String, required: false},
-    itemLocation: {type: String, required: true },
+    itemLocation: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Location', 
+        required: true 
+    },
     itemDestination: {type: String, required: false},
-    itemQuantity: {type: Number, required: false}
+    itemQuantity: {type: Number, required: true}
 })
 
 const Inventory = mongoose.model('Inventory', inventorySchema)

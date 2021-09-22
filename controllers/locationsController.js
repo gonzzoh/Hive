@@ -16,20 +16,19 @@ router.get('/', (req,res) => {
 
 /* -------------------------------- New Route ------------------------------- */
 router.get('/new', (req, res) => {
-    res.render('locations/locationsNew.ejs');
+    res.render('locations/locationNew.ejs');
   });
   
   
   /* ------------------------------- Show Route ------------------------------- */
   router.get('/:id', (req, res) => {
     db.Locations.findById(req.params.id)
-      .populate('items')
       .exec((err, foundLocation) => {
         if (err) return console.log(err);
   
         console.log(foundLocation);
   
-        res.render('location/locationShow.ejs', { location: foundLocation });
+        res.render('locations/locationShow.ejs', { location: foundLocation });
       })
   });
   
@@ -38,12 +37,33 @@ router.get('/new', (req, res) => {
   router.post('/', (req, res) => {
     db.Locations.create(req.body, (err, createdLocation) => {
       if (err) return console.log(err);
-  
-  
       res.redirect('/locations');
     });
   });
+ 
   
+  /* ------------------------------- Edit route ------------------------------- */
+router.get('/:id/edit', (req, res) => {
+    db.Locations.findById(req.params.id, (err, foundLocation) => {
+        if(err) return console.log(err);
+        res.render('locations/locationEdit.ejs', {
+            location: foundLocation
+        })
+    })
+})
+
+
+/* ------------------------------ Update route ------------------------------ */
+router.put('/:id', (req, res) => {
+    db.Locations.findByIdAndUpdate(req.params.id, req.body, (err, foundLocation) =>{
+        if(err) return console.log(err)
+        console.log(req.params.id)
+        console.log(req.body)
+        console.log(foundLocation)
+        res.redirect(`/locations`)
+    })
+})
+
   
 /* ------------------------------ Delete Route ------------------------------ */
   router.delete('/:id', (req, res) => {

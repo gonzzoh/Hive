@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/style.css">
+		<title>New Location Page</title>
+	</head>
+	<body>
+		<%- include('../partials/navbar.ejs') %>
+
+		<h1>Show Page for <%= location.locationName %></h1>
+		<main>
+			<section>
+				<h2>Location Attributes:</h2>
+				<ul>
+					<li>Name: <%= location.locationName %></li>
+					<li>Address: <%= location.locationAddress %></li>
+				</ul>
+			</section>
+
+      <section>
+        <form action="/locations/<%= location._id %>?_method=DELETE" method="post">
+            <input type="submit" value="Delete Location"/>
+        </form>
+        <a href="/locations/<%= location._id %>/edit">
+            Edit This Location
+        </a>
+    </section>
+		</main>
+	</body>
+</html>

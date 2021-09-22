@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>New Location</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+        <h1>Add a new location</h1>
+
+        <a href="/locations">See all Locations</a>
+        <form method="POST" action="/locations">
+            <label for="locationName">Name of Location: </label>
+            <input type="text" id="locationName" name="locationName">
+            <br>
+            <label for="locationAddress"> Address: </label>
+            <input type="text" id="locationAddress" name="locationAddress">
+            <br>
+            <!-- <label for="locationInventory"> Inventory: </label>
+            <input type="text" id="locationInventory" name="locationInventory">
+            <input type="number" min="0" name="itemQuantity" placeholder="0"> -->
+            <br>
+            <br>
+            <input type="submit" value="Create New Location">
+        </form>
+</body>
+
+</html>

@@ -61,6 +61,9 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
     db.Inventory.findByIdAndUpdate(req.params.id, req.body, (err, foundInventory) =>{
         if(err) return console.log(err)
+        console.log(req.params.id)
+        console.log(req.body)
+        console.log(foundInventory)
         res.redirect(`/inventory`)
     })
 })

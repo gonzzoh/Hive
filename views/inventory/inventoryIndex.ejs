@@ -29,7 +29,7 @@
                                 <%= allInventory[i].itemInfo %>
                             </p>
 
-                            <a href="/inventory/<%= allInventory[i].itemLocation %>">
+                            <a href="/location/<%= allInventory[i].itemLocation %>">
                                 <p>
                                     <%= allInventory[i].itemLocation %>
                                 </p>
@@ -42,12 +42,7 @@
                         <div class="quantityCounter">
                             <form method="POST" action="/inventory/<%= allInventory[i]._id %>?_method=PUT">
                                 <label for="quantity"> Volume of: <%= allInventory[i].itemName %></label>
-                                <input type="number" min="0" 
-                                oninput="if (this.value < allInventory[i].itemQuantity){
-                                    return allInventory[i].itemQuantity
-                                } else if (this.value >= allInventory[i].itemQuantity){
-                                    return allInventory[i].itemQuantity == this.value
-                                }"
+                                <input type="number" min="<%= allInventory[i].itemQuantity %>" 
                                 name="itemQuantity" value="<%= allInventory[i].itemQuantity %>">
                                 <input type="Submit" value='Import'>
                             </form>
