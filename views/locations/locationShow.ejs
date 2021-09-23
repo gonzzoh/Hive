@@ -1,31 +1,89 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="/style.css">
-		<title>New Location Page</title>
-	</head>
-	<body>
-		<%- include('../partials/navbar.ejs') %>
 
-		<h1>Show Page for <%= location.locationName %></h1>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/style.css">
+	<link rel="stylesheet" href="/locationShow.css">
+
+	<title>New Location Page</title>
+</head>
+
+<body>
+	<%- include('../partials/navbar.ejs') %>
+
+		<h1>Show Page for <%= location.locationName %>
+		</h1>
 		<main>
 			<section>
 				<h2>Location Attributes:</h2>
 				<ul>
-					<li>Name: <%= location.locationName %></li>
-					<li>Address: <%= location.locationAddress %></li>
+					<li>Name: <%= location.locationName %>
+					</li>
+					<br>
+					<li>Address: <%= location.locationAddress %>
+					</li>
+					<br>
 				</ul>
 			</section>
 
-      <section>
-        <form action="/locations/<%= location._id %>?_method=DELETE" method="post">
-            <input type="submit" value="Delete Location"/>
-        </form>
-        <a href="/locations/<%= location._id %>/edit">
-            Edit This Location
-        </a>
-    </section>
+			<section>
+				<form action="/locations/<%= location._id %>?_method=DELETE" method="post">
+					<input type="submit" value="Delete Location" />
+				</form>
+				<a href="/locations/<%= location._id %>/edit">
+					Edit This Location
+				</a>
+
+				<h1>
+					<%= location.locationName %> Inventory
+				</h1>
+				<ul>
+					<% for (let i=0; i < Inventory.length; i++) { %>
+						<li>
+							<div>
+								<div class="info">
+									<div class="name-misc">
+										<p>
+											<a href="/inventory/<%= Inventory[i]._id %>/edit">
+												<%= Inventory[i].itemName %>
+											</a>
+											<br>
+											<%= Inventory[i].itemInfo %>
+										</p>
+									</div>
+									<div class="locations">
+										<p>
+											Location:
+											<%= location.locationName %>
+										</p>
+										<p>
+											Destination:
+										</p>
+									</div>
+
+									<div class="quantityCounter">
+										<form method="POST" action="/inventory/<%= Inventory[i]._id %>?_method=PUT">
+											<label for="quantity"> Volume of: <%= Inventory[i].itemName %></label>
+											<br>
+											<input type="number" min="<%= Inventory[i].itemQuantity %>"
+												name="itemQuantity" value="<%= Inventory[i].itemQuantity %>">
+											<br>
+											<input type="Submit" value='Import'>
+										</form>
+									</div>
+
+								</div>
+							</div>
+							<br>
+						</li>
+						<% } %>
+				</ul>
+				<div class="newItem">
+					<a href="/inventory/new">Add a new Inventory item</a>
+				</div>
+			</section>
 		</main>
-	</body>
+</body>
+
 </html>

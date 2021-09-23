@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title>Locations Index</title>
-</head>
-<body>
-  <%- include('../partials/navbar.ejs') %>
 
-  <h1>See All the Locations</h1>
-  <a href="/locations/new">Add a new location</a>
-  
-  <ul>
-    <% for (let i = 0; i < allLocations.length; i++) { %>
-        <li>
-            <a href="/locations/<%= allLocations[i]._id %>">
-              <%= allLocations[i].locationName %>
-            </a>
-        </li>
-    <% } %>
-</ul>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/locations.css">
+    <title>Locations Index</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+        <h1>See All the Locations</h1>
+
+        <ul>
+            <% for (let i=0; i < locations.length; i++) { %>
+                <li>
+                    <div class="info">
+                        <div class="name">
+                            <a href="/locations/<%= locations[i]._id %>">
+                                <%= locations[i].locationName %>
+                            </a>
+                        </div>
+                        
+                        <p>
+                            <%= locations[i].locationAddress %>
+                        </p>
+                    </div>
+                </li>
+                <a href="/locations/new">Add a new location</a>
+                <% } %>
+        </ul>
 
 </body>
+
 </html>

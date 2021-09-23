@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/locationEdit.css">
     <title>Item Edit Page</title>
 </head>
+
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h1><%= inventory.itemName %> Page </h1>
-    <hr>
+        <h1>
+            <%= inventory.itemName %> Page
+        </h1>
+        <hr>
 
-    <!-- TODO: Create the form that PUTs to /inventorys/:id -->
-    <!-- Need to have inputs for "title" and "content" -->
-    <form method="POST" action="/inventory/<%= inventory._id %>?_method=PUT">
-        <label for="owner">Name of Owner:</label>
-        <input type="text" name="itemOwner" value="<%= inventory.itemOwner %>">
-        <br>
-        <label for="name">Name of Item:</label>
-        <input type="text" name="itemName" value="<%= inventory.itemName %>">
-        <br>
-        <label for="quantity">Amount of Items:</label>
-        <input type="number" min="0" name="itemQuantity" value="<%= inventory.itemQuantity %>">
-        <br>
-        <label for="info">Info on Item:</label>
-        <input type="text" name="itemInfo" value="<%= inventory.itemInfo %>">
-        <br>
-        <label for="location">Location of Items:</label>
-        <input type="text" name="itemLocation" value="<%= inventory.itemLocation %>">
-        <br>
-        <label for="destination">Destination of Items:</label>
-        <input type="text" name="itemDestination" value="<%= inventory.itemDestination %>">
-        <br>
-        <input type="submit">
-    </form>
+        <!-- TODO: Create the form that PUTs to /inventorys/:id -->
+        <!-- Need to have inputs for "title" and "content" -->
+        <div class="info">
+            <form method="POST" action="/inventory/<%= inventory._id %>?_method=PUT">
+                <label for="owner">Name of Owner:</label>
+                <input type="text" name="itemOwner" value="<%= inventory.itemOwner %>">
+                <br>
+                <label for="name">Name of Item:</label>
+                <input type="text" name="itemName" value="<%= inventory.itemName %>">
+                <br>
+                <label for="quantity">Amount of Items:</label>
+                <input type="number" min="0" name="itemQuantity" value="<%= inventory.itemQuantity %>">
+                <br>
+                <label for="info">Info on Item:</label>
+                <input type="text" name="itemInfo" value="<%= inventory.itemInfo %>">
+                <br>
+                <div class="input-box-content">
+                    <label for="location">Location of Items:</label>
+                    <select name="itemLocation" id="location">
+                        <option value="<%= inventory.itemLocation._id %>"> <%= inventory.itemLocation.locationName %> </option>
+                        <% for (let i=0; i < location.length; i++) { %>
+                            <option value="<%= location[i]._id %>">
+                                <%= location[i].locationName %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <label for="destination">Destination of Items:</label>
+                <input type="text" name="itemDestination" value="<%= inventory.itemDestination %>">
+                <br>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
 </body>
+
 </html>

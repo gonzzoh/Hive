@@ -6,8 +6,7 @@ const inventorySchema = new mongoose.Schema({
     itemInfo: {type: String, required: false},
     itemLocation: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Location', 
-        required: true 
+        ref:'Location'
     },
     itemDestination: {type: String, required: false},
     itemQuantity: {type: Number, required: true}

@@ -5,16 +5,16 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: darkblue;
+    background-color: black;
     padding: 5px;
 }
 
 nav a {
-    color: chartreuse;
+    /* color: #7B7B7C; */
     text-decoration: none;
     margin-left: 5px;
 }
 
 nav a:hover {
-    color: gray;
+    /* color: #DC3C44; */
 }

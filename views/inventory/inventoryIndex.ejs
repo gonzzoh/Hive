@@ -6,52 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/inventory.css">
     <title>Inventory Index</title>
 </head>
 
 <body>
     <%- include('../partials/navbar.ejs') %>
         <h1>All the Inventory</h1>
-        <a href="/inventory/new">Add a new Inventory item</a>
-
         <ul>
             <% for (let i=0; i < allInventory.length; i++) { %>
                 <li>
                     <div>
-                        <div class="name">
-                            <a href="/inventory/<%= allInventory[i]._id %>/edit">
-                                <%= allInventory[i].itemName %>
-                            </a>
-                        </div>
-
                         <div class="info">
-                            <p>
-                                <%= allInventory[i].itemInfo %>
-                            </p>
-
-                            <a href="/location/<%= allInventory[i].itemLocation %>">
+                            <div class="name-misc">
                                 <p>
-                                    <%= allInventory[i].itemLocation %>
+                                    <a href="/inventory/<%= allInventory[i]._id %>/edit">
+                                        <%= allInventory[i].itemName %>
+                                    </a>
+                                    <br>
+                                    <%= allInventory[i].itemInfo %>
+                                </p>
+                            </div>
+
+                            <a href="/locations/<%= allInventory[i].itemLocation._id %>">
+                                <p>
+                                    Location:
+                                    <%= allInventory[i].itemLocation.locationName %>
                                 </p>
                                 <p>
+                                    Destination:
                                     <%= allInventory[i].itemDestination %>
                                 </p>
                             </a>
-                        </div>
 
-                        <div class="quantityCounter">
-                            <form method="POST" action="/inventory/<%= allInventory[i]._id %>?_method=PUT">
-                                <label for="quantity"> Volume of: <%= allInventory[i].itemName %></label>
-                                <input type="number" min="<%= allInventory[i].itemQuantity %>" 
-                                name="itemQuantity" value="<%= allInventory[i].itemQuantity %>">
-                                <input type="Submit" value='Import'>
-                            </form>
+                            <div class="quantityCounter">
+                                <form method="POST" action="/inventory/<%= allInventory[i]._id %>?_method=PUT">
+                                    <label for="quantity"> Volume of: <%= allInventory[i].itemName %></label>
+                                    <br>
+                                    <input type="number" min="<%= allInventory[i].itemQuantity %>" name="itemQuantity"
+                                        value="<%= allInventory[i].itemQuantity %>">
+                                    <br>
+                                    <input type="Submit" value='Import'>
+                                </form>
+                            </div>
+
                         </div>
-                        <br>
                     </div>
+                    <br>
                 </li>
                 <% } %>
-        </ul>
+            </ul>
+            <div class="newItem">
+                <a href="/inventory/new">Add a new Inventory item</a>
+            </div>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ const locationSchema = new mongoose.Schema({
     locationInventory: [
         {
             type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Inventory',
+            ref: 'Inventory'
         }
     ]
 })

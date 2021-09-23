@@ -1,40 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/new.css">
     <title>New Item</title>
 </head>
+
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h1>Add a new Item</h1>
-    <form method="POST" action="/inventory">
-        <br>
+        <h1>Add a new Item</h1>
+        <form method="POST" action="/inventory">
 
-        <label for="owner">Name of Owner:</label>
-        <input type="text" name="itemOwner">
-        <br>
-        <label for="name">Name of Item:</label>
-        <input type="text" name="itemName">
-        <br>
-        <label for="quantity">Amount of Items:</label>
-        <input type="number" name="itemQuantity">
-        <br>
-        <label for="info">Info on Item:</label>
-        <input type="text" name="itemInfo">
-        <br>
-        <label for="location">Location of Items:</label>
-        <input type="text" name="itemLocation">
-        <br>
-        <label for="destination">Destination of Items:</label>
-        <input type="text" name="itemDestination">
-        <br>
-        <label for="content">Item Info/Instructions:</label>
-        <input type="text" name="content">
-        <br>
-        <input type="submit">
-    </form>
+            <br>
+            <div class="input-content-wrap">
+                <div class="inputbox">
+                    <label for="owner">Name of Owner:</label>
+                    <div class="input-box-content">
+                        <input id="inventoryInp" type="text" name="itemOwner">
+                    </div>
+                    <br>
+                </div>
+                <div class="inputbox">
+                    <label for="name">Name of Item:</label>
+                    <div class="input-box-content">
+                        <input id="inventoryInp" type="text" name="itemName">
+                    </div>
+                    <br>
+                </div>
+                <div class="inputbox">
+                    <label for="quantity">Amount of Items:</label>
+                    <div class="input-box-content">
+                        <input id="inventoryInp" type="number" name="itemQuantity">
+                    </div>
+                    <br>
+                </div>
+                <div class="inputbox">
+                    <label for="info">Info on Item:</label>
+                    <div class="input-box-content">
+                        <input id="inventoryInp" type="text" name="itemInfo">
+                    </div>
+                    <br>
+                </div>
+                <div class="input-box-content">
+                    <label for="location">Location of Items:</label>
+                    <select name="itemLocation" id="location">
+                        <% for (let i=0; i < location.length; i++) { %>
+                            <option value="<%= location[i]._id %>">
+                                <%= location[i].locationName %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <br>
+                <div class="inputdropdown">
+                    <label for="destination">Destination of Items:</label>
+                    <div class="input-box-content">
+                        <input id="inventoryInp" type="text" name="itemDestination">
+                    </div>
+                    <br>
+                </div>
+                <div class="btns">
+                    <input type="submit">
+                </div>
+            </div>
+        </form>
 </body>
+
 </html>
