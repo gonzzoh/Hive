@@ -4,7 +4,8 @@ const express = require('express');
 const methodOverride = require('method-override');
 const rowdy = require('rowdy-logger')
 const inventoryController = require('./controllers/inventoryController.js');
-const locationsController = require('./controllers/locationsController.js')
+const locationsController = require('./controllers/locationsController.js');
+const exportsController = require('./controllers/exportsController.js')
 
 
 /* ------------------------------ Configuration ----------------------------- */
@@ -22,7 +23,8 @@ app.use(express.static('public'))
 
 /* ------------------------------- Controllers ------------------------------ */
 app.use('/inventory', inventoryController);
-app.use('/locations', locationsController)
+app.use('/locations', locationsController);
+app.use('/exports', exportsController)
 
 
 /* --------------------------------- Routes --------------------------------- */
