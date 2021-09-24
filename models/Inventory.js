@@ -8,7 +8,8 @@ const inventorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'Location'
     },
-    itemDestination: {type: String, required: false},
+    itemDestination: {type: mongoose.Schema.Types.ObjectId,
+        ref:'Location'},
     itemQuantity: {type: Number, required: true}
 })
 

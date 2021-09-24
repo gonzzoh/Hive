@@ -1,15 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title>Home Page</title>
+    <meta charset='utf-8' />
+    <title>Getting started with the Mapbox Directions API</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* body {
+            margin: 0;
+            padding: 0;
+        } */
+
+        #map {
+            position: absolute;
+            top: 2em;
+            bottom: 2em;
+            left: 10%;
+            top: 13%;
+            width: 80%;
+        }
+
+        /* #instructions {
+            position: absolute;
+            margin: 20px;
+            width: 15%;
+            top: 2em;
+            bottom: 2em;
+            left: 10%;
+            top: 13%;
+            padding: 20px;
+            background-color: #fff;
+            overflow-y: scroll;
+            font-family: sans-serif;
+        } */
+    </style>
 </head>
+
 <body>
-  <%- include('./partials/navbar.ejs') %>
-  <h1>Is you shippen me!?</h1>
-  
+    <%- include('./partials/navbar.ejs') %>
+        <h1>Home</h1>
+        <div id='map'></div>
+        <div id="instructions"></div>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZ29uenpvaCIsImEiOiJja3R4a28zOGYwMXQ4MzBuejRpcnFsZzJnIn0.V-zD8gW6YksIPzrd-Owi-g';
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [-96.95318920678551,38.38457504470804], // starting position
+                zoom: 2.9
+            });
+
+            const bounds = [
+                [-125.62415351211285, 24.888585131411645],
+                [-66.48003577468766, 49.25994505098271]
+            ];
+            // map.setMaxBounds(bounds);
+
+            // an arbitrary start will always be the same
+            // only the end or destination will change
+            // const start = [-106.08134365317017, 38.63634362189086];
+            // create a function to make a directions request
+            // async function getRoute(end) {
+            //     // make a directions request using cycling profile
+            //     // an arbitrary start will always be the same
+            //     // only the end or destination will change
+            //     const query = await fetch(
+            //         `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            //         { method: 'GET' }
+            //     );
+            //     const json = await query.json();
+            //     const data = json.routes[0];
+            //     const route = data.geometry.coordinates;
+            //     const geojson = {
+            //         type: 'Feature',
+            //         properties: {},
+            //         geometry: {
+            //             type: 'LineString',
+            //             coordinates: route
+            //         }
+            //     };
+            //     // if the route already exists on the map, we'll reset it using setData
+            //     if (map.getSource('route')) {
+            //         map.getSource('route').setData(geojson);
+            //     }
+            //     // otherwise, we'll make a new request
+            //     else {
+            //         map.addLayer({
+            //             id: 'route',
+            //             type: 'line',
+            //             source: {
+            //                 type: 'geojson',
+            //                 data: geojson
+            //             },
+            //             layout: {
+            //                 'line-join': 'round',
+            //                 'line-cap': 'round'
+            //             },
+            //             paint: {
+            //                 'line-color': '#3887be',
+            //                 'line-width': 5,
+            //                 'line-opacity': 0.75
+            //             }
+            //         });
+            //     }
+            //     // get the sidebar and add the instructions
+            //     const instructions = document.getElementById('instructions');
+            //     const steps = data.legs[0].steps;
+
+            //     let tripInstructions = '';
+            //     for (const step of steps) {
+            //         tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+            //     }
+            //     instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
+            //         data.duration / 60
+            //     )} min 🚚 </strong></p><ol>${tripInstructions}</ol>`;
+            // }
+
+            // map.on('load', () => {
+            //     // make an initial directions request that
+            //     // starts and ends at the same location
+            //     getRoute(start);
+
+            //     // Add starting point to the map
+            //     map.addLayer({
+            //         id: 'point',
+            //         type: 'circle',
+            //         source: {
+            //             type: 'geojson',
+            //             data: {
+            //                 type: 'FeatureCollection',
+            //                 features: [
+            //                     {
+            //                         type: 'Feature',
+            //                         properties: {},
+            //                         geometry: {
+            //                             type: 'Point',
+            //                             coordinates: start
+            //                         }
+            //                     }
+            //                 ]
+            //             }
+            //         },
+            //         paint: {
+            //             'circle-radius': 10,
+            //             'circle-color': '#3887be'
+            //         }
+            //     });
+            //     map.on('click', ({ lngLat }) => {
+            //         const coords = Object.keys(lngLat).map((key) => lngLat[key]);
+            //         const end = {
+            //             type: 'FeatureCollection',
+            //             features: [
+            //                 {
+            //                     type: 'Feature',
+            //                     properties: {},
+            //                     geometry: {
+            //                         type: 'Point',
+            //                         coordinates: coords
+            //                     }
+            //                 }
+            //             ]
+            //         };
+            //         if (map.getLayer('end')) {
+            //             map.getSource('end').setData(end);
+            //         } else {
+            //             map.addLayer({
+            //                 id: 'end',
+            //                 type: 'circle',
+            //                 source: {
+            //                     type: 'geojson',
+            //                     data: {
+            //                         type: 'FeatureCollection',
+            //                         features: [
+            //                             {
+            //                                 type: 'Feature',
+            //                                 properties: {},
+            //                                 geometry: {
+            //                                     type: 'Point',
+            //                                     coordinates: coords
+            //                                 }
+            //                             }
+            //                         ]
+            //                     }
+            //                 },
+            //                 paint: {
+            //                     'circle-radius': 10,
+            //                     'circle-color': '#f30'
+            //                 }
+            //             });
+            //         }
+            //         getRoute(coords);
+            //     });
+            // });
+        </script>
 </body>
+
 </html>
