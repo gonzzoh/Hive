@@ -4,6 +4,13 @@
     font-family: 'Vidaloka', serif;
     /* background-color:#121212; */
   }
+
+h1 {
+  text-align: center;
+  color: #7C6B58;
+}
+
+
   
   .info {
     justify-content: space-between;

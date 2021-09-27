@@ -1,5 +1,10 @@
 body {
     margin: 0px;
+    background-image: url(./background-3.jpeg);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: 100vh;
 }
 
 nav {
@@ -10,11 +15,11 @@ nav {
 }
 
 nav a {
-    /* color: #7B7B7C; */
+    color: #7B7B7C;
     text-decoration: none;
     margin-left: 5px;
 }
 
 nav a:hover {
-    /* color: #DC3C44; */
+    color: #7C6B58;
 }

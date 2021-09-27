@@ -12,7 +12,7 @@
 
 <body>
     <%- include('../partials/navbar.ejs') %>
-        <h1>Add a new Item</h1>
+        <h1>Add a New Item to the Invenory</h1>
         <form method="POST" action="/inventory">
 
             <br>
@@ -46,7 +46,7 @@
                     <br>
                 </div>
                 <div class="input-box-content">
-                    <label for="location">Location of Items:</label>
+                    <label for="location">Location:</label>
                     <select name="itemLocation" id="location">
                         <% for (let i=0; i < location.length; i++) { %>
                             <option value="<%= location[i]._id %>">
@@ -66,6 +66,7 @@
                 <div class="btns">
                     <input type="submit">
                 </div>
+                <br>
             </div>
         </form>
 </body>

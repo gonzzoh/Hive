@@ -13,8 +13,8 @@
 <body>
     <%- include('../partials/navbar.ejs') %>
 
-        <h1>See All the Locations</h1>
-
+        <h1>All Available Locations</h1>
+    <div class="wrapper">
         <ul>
             <% for (let i=0; i < locations.length; i++) { %>
                 <li>
@@ -24,16 +24,21 @@
                                 <%= locations[i].locationName %>
                             </a>
                         </div>
-                        
-                        <p>
-                            <%= locations[i].locationAddress %>
-                        </p>
+
+                        <div class="location">
+                            <p>
+                                <%= locations[i].locationAddress %>
+                            </p>
+                        </div>
                     </div>
                 </li>
-                <a href="/locations/new">Add a new location</a>
                 <% } %>
         </ul>
-
+        <div class="newItem">
+            <a href="/locations/new">Add a New Location</a>
+        </div>
+    </div>
+    
 </body>
 
 </html>

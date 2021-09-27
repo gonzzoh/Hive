@@ -15,29 +15,38 @@
 		<h1>Show Page for <%= location.locationName %>
 		</h1>
 		<main>
-			<section>
-				<h2>Location Attributes:</h2>
-				<ul>
-					<li>Name: <%= location.locationName %>
-					</li>
-					<br>
-					<li>Address: <%= location.locationAddress %>
-					</li>
-					<br>
-				</ul>
-			</section>
+			<div class="wrapper">
+				<div class="data">
+					<div class="mild-dets">
+						<section>
+							<h2>Location Attributes:</h2>
+							<ul>
+								<li>Name: <%= location.locationName %>
+								</li>
+								<br>
+								<li>Address: <%= location.locationAddress %>
+								</li>
+								<br>
+							</ul>
+						</section>
+					</div>
 
-			<section>
-				<form action="/locations/<%= location._id %>?_method=DELETE" method="post">
-					<input type="submit" value="Delete Location" />
-				</form>
-				<a href="/locations/<%= location._id %>/edit">
-					Edit This Location
-				</a>
-
-				<h1>
+					<section>
+						<div class="btns">
+							<form action="/locations/<%= location._id %>?_method=DELETE" method="post">
+								<input type="submit" value="Delete Location" />
+							</form>
+							<br>
+							<a href="/locations/<%= location._id %>/edit">
+								Edit This Location
+							</a>
+						</div>
+				</div>
+				<br>
+				<hr>
+				<h3>
 					<%= location.locationName %> Inventory
-				</h1>
+				</h3>
 				<ul>
 					<% for (let i=0; i < Inventory.length; i++) { %>
 						<li>
@@ -69,7 +78,7 @@
 											<input type="number" min="<%= Inventory[i].itemQuantity %>"
 												name="itemQuantity" value="<%= Inventory[i].itemQuantity %>">
 											<br>
-											<input type="Submit" value='Import'>
+												<input type="Submit" value='Import'>
 										</form>
 									</div>
 
@@ -82,7 +91,8 @@
 				<div class="newItem">
 					<a href="/inventory/new">Add a new Inventory item</a>
 				</div>
-			</section>
+				</section>
+			</div>
 		</main>
 </body>
 
